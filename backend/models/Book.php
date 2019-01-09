@@ -10,7 +10,6 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string $content
- * @property string $author
  * @property string $date
  * @property string $image
  * @property int $viewed
@@ -36,8 +35,8 @@ class Book extends \yii\db\ActiveRecord
             [['title', 'content'], 'required'],
             [['content'], 'string'],
             [['date'], 'safe'],
-            [['viewed', 'status', 'category_id'], 'integer'],
-            [['title', 'author', 'image'], 'string', 'max' => 255],
+            [['viewed', 'status', 'category_id', 'author_id'], 'integer'],
+            [['title', 'image'], 'string', 'max' => 255],
         ];
     }
 
@@ -50,12 +49,33 @@ class Book extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'content' => 'Content of book',
-            'author' => 'Author',
             'date' => 'Date',
             'image' => 'Image',
             'viewed' => 'Viewed',
             'status' => 'Status',
-            'category_id' => 'Category ID',
+            'category_id' => 'Category',
+            'author_id' => 'Author',
         ];
     }
+    
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+    
+    public function getAuthor()
+    {
+        return $this->hasOne(Author::class, ['id' => 'author_id'])->one();
+    }
+    
+    public function getAuthorName()
+    {
+        if($author = $this->getAuthor())
+        {
+            return $author->name;
+        }
+        return 'not set';
+    }
 }
+    
+   

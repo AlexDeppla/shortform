@@ -19,23 +19,35 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Book', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'title',
-            'content:ntext',
-            'author',
+            'content:html',
             'date',
-            //'image',
-            //'viewed',
-            //'status',
-            //'category_id',
+            [
+                'attribute' => 'category_id',
+                'value' => function($data) {
+                    return $data->category->title;
+                },
+            ],
+            [
+                'attribute' => 'author_id',
+//                'value' => $searchModel->getAuthorName(),
+                'value' => function($data) {
+                        return $data->author->name;
+                },
+            ],
 
+            //'image',
+//        'viewed',
+//        'status',
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    ?>
 </div>

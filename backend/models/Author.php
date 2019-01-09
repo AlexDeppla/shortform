@@ -5,19 +5,20 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "author".
  *
  * @property int $id
- * @property string $title
+ * @property string $name
+ * @property string $birthdate
  */
-class Category extends \yii\db\ActiveRecord
+class Author extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'category';
+        return 'author';
     }
 
     /**
@@ -26,7 +27,8 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'string', 'max' => 255],
+            [['birthdate'], 'safe'],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -37,12 +39,8 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'name' => 'Name',
+            'birthdate' => 'Birthdate',
         ];
-    }
-    
-    public function getBooks()
-    {
-         return $this->hasMany(Book::class, ['category_id' => 'id']);
     }
 }

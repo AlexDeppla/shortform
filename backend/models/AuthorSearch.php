@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Book;
+use backend\models\Author;
 
 /**
- * BookSearch represents the model behind the search form of `backend\models\Book`.
+ * AuthorSearch represents the model behind the search form of `backend\models\Author`.
  */
-class BookSearch extends Book
+class AuthorSearch extends Author
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class BookSearch extends Book
     public function rules()
     {
         return [
-            [['id', 'viewed', 'status', 'category_id', 'author_id'], 'integer'],
-            [['title', 'content', 'date', 'image'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'birthdate'], 'safe'],
         ];
     }
 
@@ -41,14 +41,14 @@ class BookSearch extends Book
      */
     public function search($params)
     {
-        $query = Book::find();
+        $query = Author::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-        
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -60,18 +60,11 @@ class BookSearch extends Book
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
-            'viewed' => $this->viewed,
-            'status' => $this->status,
-            'category_id' => $this->category_id,
+            'birthdate' => $this->birthdate,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'image', $this->image]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
-       
-            return $dataProvider;
- 
+        return $dataProvider;
     }
 }
