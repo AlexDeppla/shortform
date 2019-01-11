@@ -12,6 +12,9 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Book;
+use yii\data\Pagination;
+use frontend\models\Category;
 
 /**
  * Site controller
@@ -71,9 +74,64 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-        return $this->render('index');
+    {        
+        $query = Book::find();
+        
+        $count = $query->count();
+        
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => '3']);
+        
+        $books = $query->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        
+        $recent1 = Book::find()->orderBy('date desc')->where(['category_id' => 1])->one();
+        $recent2 = Book::find()->orderBy('date desc')->where(['category_id' => 2])->one();
+        $recent3 = Book::find()->orderBy('date desc')->where(['category_id' => 3])->one();
+        
+//        echo '<pre>';
+//        print_r($recent);
+//        echo '</pre>';
+//        die;
+        
+        return $this->render('index', [
+            'books' => $books,
+            'pagination' => $pagination,
+            'recent1' => $recent1,
+            'recent2' => $recent2,
+            'recent3' => $recent3,
+        ]);
     }
+    
+    public function actionView($id)
+    {
+        $books = Book::findOne($id);
+        
+        return $this->render('view', [
+            'books' => $books,
+        ]);
+    }
+    
+//    public function actionCategory($id)
+//    {
+//        $category = Category::findOne($id);
+//        
+//        $query = Book::find()->where(['category_id' => $id]);
+//
+//        $count = $query->count();
+//
+//        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 3]);
+//        
+//        $books = $query->offset($pagination->offset)
+//                ->limit($pagination->limit)
+//                ->all(); 
+//        
+//        return $this->render('category', [
+//            'books' => $books,
+//            'pagination' => $pagination,
+//            'category' => $category,
+//        ]);
+//    }
 
     /**
      * Logs in a user.

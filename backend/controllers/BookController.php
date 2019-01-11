@@ -8,9 +8,6 @@ use backend\models\BookSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use backend\models\Bookstoauthors;
-use yii\helpers\ArrayHelper;
-use backend\models\Author;
 
 /**
  * BookController implements the CRUD actions for Book model.
@@ -37,21 +34,9 @@ class BookController extends Controller
      * @return mixed
      */
     public function actionIndex() {
-//        $query = Book::find()->all();
-//        
-//        return $this->render('index', [
-//            'query' => $query,
-//        ]);
-        
-//        echo '<pre>';
-//        print_r($query);
-//        echo '</pre>';
-//        die;
-
         $searchModel = new BookSearch();
         
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         
            return $this->render('index', [
             'searchModel' => $searchModel,
@@ -87,6 +72,23 @@ class BookController extends Controller
         }
 
         return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+    
+    /**
+     * Updates Book model.
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
             'model' => $model,
         ]);
     }

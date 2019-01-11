@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -15,6 +15,7 @@ use Yii;
  * @property int $viewed
  * @property int $status
  * @property int $category_id
+ * @property string $author_id
  */
 class Book extends \yii\db\ActiveRecord
 {
@@ -32,11 +33,10 @@ class Book extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
             [['content'], 'string'],
             [['date'], 'safe'],
-            [['viewed', 'status', 'category_id', 'author_id'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
+            [['viewed', 'status', 'category_id'], 'integer'],
+            [['title', 'image', 'author_id'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,13 +48,13 @@ class Book extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'content' => 'Content of book',
+            'content' => 'Content',
             'date' => 'Date',
             'image' => 'Image',
             'viewed' => 'Viewed',
             'status' => 'Status',
-            'category_id' => 'Category',
-            'author_id' => 'Author',
+            'category_id' => 'Category ID',
+            'author_id' => 'Author ID',
         ];
     }
     
@@ -65,17 +65,8 @@ class Book extends \yii\db\ActiveRecord
     
     public function getAuthor()
     {
-        return $this->hasOne(Author::class, ['id' => 'author_id']);
+        return $this->hasOne(Author::className(), ['id' => 'author_id']);
     }
     
-//    public function getAuthorName()
-//    {
-//        if($author = $this->getAuthor())
-//        {
-//            return $author->name;
-//        }
-//        return 'not set';
-//    }
-}
     
-   
+}
