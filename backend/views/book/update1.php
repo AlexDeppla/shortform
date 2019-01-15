@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use backend\models\Category;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 mihaildev\elfinder\Assets::noConflict($this);
@@ -26,6 +25,7 @@ use backend\models\Author;
     <?php echo
     $form->field($model, 'content')->widget(CKEditor::className(), [
         'editorOptions' => ElFinder::ckeditorOptions(['elfinder', 'path' => 'some/sub/path'], [/* Some CKEditor Options */]),
+        'attribute'=>'text',
     ]);
     ?>
     

@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use Yii;
 
 /**
  * This is the model class for table "book".
@@ -32,8 +31,8 @@ class Book extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
-            [['content'], 'string'],
+            [['title',], 'required'],
+            [['content'], 'required'],
             [['date'], 'safe'],
             [['viewed', 'status', 'category_id', 'author_id'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],

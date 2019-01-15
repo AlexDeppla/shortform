@@ -28,8 +28,7 @@ use yii\widgets\LinkPager;
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $book->title; ?></h5>
                                     <p class="card-text"><?= $book->author->name; ?></p>
-                                    <p class="card-text"><?= $book->content; ?></p>
-                                    <p class="card-text"><?= $book->category->title; ?></p>
+                                     <a href="<?= Url::toRoute(['category/index', 'id' => $book->category->id]); ?> <p class="card-text"> <?= $book->category->title; ?></p></a>
                                     <a href="<?= Url::toRoute(['site/view', 'id' => $book->id]); ?>"  class="btn btn-primary btn-md">read
                                         <i class="fa fa-play ml-2"></i>
                                     </a>

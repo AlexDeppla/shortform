@@ -18,7 +18,7 @@ class BookSearch extends Book
     public function rules()
     {
         return [
-            [['id', 'viewed', 'status', 'category_id', 'author_id'], 'integer'],
+            [['id', 'viewed', 'status', 'category_id', 'author'], 'integer'],
             [['title', 'content', 'date', 'image'], 'safe'],
         ];
     }

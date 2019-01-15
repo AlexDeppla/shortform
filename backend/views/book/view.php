@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'content:html',
+//            'content:html',
             [
                 'attribute' => 'author_id',
 //                'value' => $searchModel->getAuthorName(),

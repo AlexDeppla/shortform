@@ -8,6 +8,7 @@ use backend\models\BookSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\Category;
 
 /**
  * BookController implements the CRUD actions for Book model.
@@ -65,14 +66,16 @@ class BookController extends Controller
     public function actionCreate()
     {
         $model = new Book();
+        $categories = Category::getList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 //            return $this->redirect(['view', 'id' => $model->id]);
             return $this->refresh();
         }
 
-        return $this->render('create', [
+        return $this->render('create1', [
             'model' => $model,
+            'categories' => $categories,
         ]);
     }
     
@@ -83,13 +86,15 @@ class BookController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $categories = Category::getList();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
+        return $this->render('update1', [
             'model' => $model,
+            'categories' => $categories,
         ]);
     }
 
