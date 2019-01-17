@@ -15,6 +15,12 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        'user' => [
+            'identityClass' => 'frontend\models\User',
+            'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+//            'loginUrl' => ['auth/login'],
+        ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',

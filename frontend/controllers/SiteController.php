@@ -87,6 +87,9 @@ class SiteController extends Controller
         ]);
     }
     
+    /*
+     * @return mixed
+     */
     public function actionView($id)
     {
         $books = Book::findOne($id);
@@ -96,10 +99,6 @@ class SiteController extends Controller
         ]);
     }
     
-
-    
-
-   
     /**
      * Displays contact page.
      *

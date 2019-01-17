@@ -33,22 +33,19 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-//            $user = User::findByUsername($this->username);
-//            return Yii::$app->user->login($user);
+            $user = User::findByUsername($this->username);
+            return Yii::$app->user->login($user);
         }
-//        return false;
+        return false;
     }
     
     public function validatePassword($attribute, $params)
     {
         $user = User::findByUsername($this->username);
         
-        echo '<pre>';
-        print_r($user);
-        echo '</pre>'; die;
-//        if (!$user || !$user->validatePassword($this->password)) {
-//            $this->addError($attribute, 'Incorrect password');
-//        }
+        if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Incorrect password');
+        }
     }
 
 }

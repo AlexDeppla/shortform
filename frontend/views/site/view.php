@@ -1,7 +1,9 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
+
 
 $this->title = $books->category->title;
 ?>
