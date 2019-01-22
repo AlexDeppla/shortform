@@ -49,8 +49,10 @@ return [
             'class' => 'mihaildev\elfinder\PathController',
             'access' => ['?'],
             'root' => [
-                'baseUrl' => '@web',
-                'basePath' => '@webroot',
+//                'baseUrl' => '@web',
+//                'basePath' => '@webroot',
+                'baseUrl' => 'frontend',
+                'basePath' => 'frontend/web',
                 'path' => 'upload/global',
                 'name' => 'Global'
             ],

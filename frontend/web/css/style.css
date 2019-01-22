@@ -1,0 +1,29 @@
+/*body {
+    padding-top: 54px;
+  }*/
+  
+  @media (min-width: 992px) {
+    body {
+      padding-top: 56px;
+    }
+  }
+
+div.row {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar {
+    background-color: #000000;
+}
+
+@media (min-width: 576px) { 
+    div.row {
+        justify-content: left;
+    }
+ }
+
+ 
+.portfolio-item {
+    margin-bottom: 30px;
+  } 
+  

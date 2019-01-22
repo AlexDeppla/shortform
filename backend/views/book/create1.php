@@ -23,6 +23,7 @@ use backend\models\Author;
 
     <?php echo
     $form->field($model, 'content')->widget(CKEditor::className(), [
+//        'editorOptions' => ElFinder::ckeditorOptions(['elfinder', 'path' => 'some/sub/path'], [/* Some CKEditor Options */]),
         'editorOptions' => ElFinder::ckeditorOptions(['elfinder', 'path' => 'some/sub/path'], [/* Some CKEditor Options */]),
         'attribute'=>'text',
     ]);
