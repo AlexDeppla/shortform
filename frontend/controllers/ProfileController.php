@@ -6,9 +6,10 @@ use frontend\models\Book;
 use frontend\models\Profile;
 use Yii;
 
-class ProfileController extends \yii\web\Controller {
-
-    public function actionAdd() {
+class ProfileController extends \yii\web\Controller 
+{
+    public function actionAdd() 
+    {
         $id = Yii::$app->request->get('id');
 
         $book = Book::findOne($id);
@@ -23,7 +24,8 @@ class ProfileController extends \yii\web\Controller {
         return $this->render('profile-modal', compact('session'));
     }
 
-    public function actionClear() {
+    public function actionClear() 
+    {
         $session = $id = Yii::$app->session;
         $session->open();
         $session->remove('profile');
@@ -31,7 +33,8 @@ class ProfileController extends \yii\web\Controller {
         return $this->render('profile-modal', compact('session'));
     }
 
-    public function actionDelItem() {
+    public function actionDelItem() 
+    {
         $id = Yii::$app->request->get('id');
         $session = Yii::$app->session;
         $session->open();
@@ -41,7 +44,8 @@ class ProfileController extends \yii\web\Controller {
         return $this->render('profile-modal', compact('session'));
     }
 
-    public function actionShow() {
+    public function actionShow() 
+    {
         $session = Yii::$app->session;
         $session->open();
         $this->layout = false;

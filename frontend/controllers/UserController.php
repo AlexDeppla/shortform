@@ -34,7 +34,7 @@ class UserController extends \yii\web\Controller {
         if ($model->load(Yii::$app->request->post()) && $user = $model->save()) 
         {
             Yii::$app->user->login($user);
-            Yii::$app->session->setFlash('success', 'User registered!');
+//            Yii::$app->session->setFlash('success', 'User registered!');
             return $this->redirect(['site/index']);
         }
 

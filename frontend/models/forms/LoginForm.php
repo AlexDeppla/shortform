@@ -13,7 +13,6 @@ use frontend\models\User;
  */
 class LoginForm extends Model
 {
-
     public $username;
     public $password;
     
@@ -43,7 +42,8 @@ class LoginForm extends Model
     {
         $user = User::findByUsername($this->username);
         
-        if (!$user || !$user->validatePassword($this->password)) {
+        if (!$user || !$user->validatePassword($this->password)) 
+        {
                 $this->addError($attribute, 'Incorrect password');
         }
     }

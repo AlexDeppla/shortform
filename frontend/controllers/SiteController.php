@@ -1,16 +1,10 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Book;
 use yii\data\Pagination;
@@ -69,25 +63,22 @@ class SiteController extends Controller
                 ->limit($pagination->limit)
                 ->all();
         
-        $recent1 = Book::find()->orderBy('date desc')->where(['category_id' => 1])->one();
-        $recent2 = Book::find()->orderBy('date desc')->where(['category_id' => 2])->one();
-        $recent3 = Book::find()->orderBy('date desc')->where(['category_id' => 3])->one();
-        
-//        echo '<pre>';
-//        print_r($recent);
-//        echo '</pre>';
-//        die;
+        $sci_fy = Book::find()->orderBy('date desc')->where(['category_id' => 1])->one();
+        $drama = Book::find()->orderBy('date desc')->where(['category_id' => 2])->one();
+        $comedy = Book::find()->orderBy('date desc')->where(['category_id' => 3])->one();
         
         return $this->render('index', [
             'books' => $books,
             'pagination' => $pagination,
-            'recent1' => $recent1,
-            'recent2' => $recent2,
-            'recent3' => $recent3,
+            'sci_fy' => $sci_fy,
+            'drama' => $drama,
+            'comedy' => $comedy,
         ]);
     }
     
     /*
+     * Displays single page
+     * 
      * @return mixed
      */
     public function actionView($id)
@@ -120,15 +111,5 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

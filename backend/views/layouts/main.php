@@ -30,8 +30,6 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-//        'brandUrl' => Yii::$app->homeUrl,
-//        'brandLabel' => Yii::$app->name,
         'brandUrl' => '/book',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',

@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use Yii;
@@ -8,7 +9,7 @@ use yii\filters\AccessControl;
 use backend\models\forms\LoginForm;
 
 /**
- * Site controller
+ * UserController implements the CRUD actions for User model.
  */
 class SiteController extends Controller
 {
@@ -58,10 +59,6 @@ class SiteController extends Controller
      *
      * @return string
      */
-//    public function actionIndex()
-//    {
-//        return $this->render('index');
-//    }
 
     public function actionLogin()
     {
@@ -79,6 +76,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        return $this->redirect(['site/index']);
+        return $this->redirect(['book/index']);
     }
 }

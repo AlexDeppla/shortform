@@ -118,7 +118,8 @@ class CategoryController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) 
+        {
             return $model;
         }
 

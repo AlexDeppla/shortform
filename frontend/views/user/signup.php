@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<main class="mt-5 pt-5">  
+<main>  
     <div class="container">
 
         <!--Section: Post-->
-        <section class="mt-4">
+        <section>
             <div class="site-signup">
                 <h1><?= Html::encode($this->title) ?></h1>
 
