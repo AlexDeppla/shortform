@@ -27,7 +27,7 @@ $this->title = 'My Yii Application';
                         <h6 class="card-title"><?= $recent1->author->name; ?></h6>
                         <p class="card-text">Фантастика – это наша реальность, доведенная до абсурда.</p>
                         <a href="<?= Url::toRoute(['site/view', 'id' => $recent1->id]); ?>" class="btn btn-primary">читать</a>
-                        <a href="<?= Url::toRoute(['profile/add', 'id' => $recent1->id]); ?>" class="btn btn-primary">добавить</a>
+                        <a href="#" data-id="<?=$recent1->id?>" class="btn btn-primary add-to-profile">добавить</a>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,7 @@ $this->title = 'My Yii Application';
                         <h6 class="card-title"><?= $recent2->author->name; ?></h6>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="<?= Url::toRoute(['site/view', 'id' => $recent2->id]); ?>" class="btn btn-primary">читать</a>
+                        <a href="#" data-id="<?=$recent2->id?>" class="btn btn-primary add-to-profile">добавить</a>
                     </div>
                 </div>
             </div>
@@ -54,6 +55,7 @@ $this->title = 'My Yii Application';
                         <h6 class="card-title"><?= $recent3->author->name; ?></h6>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="<?= Url::toRoute(['site/view', 'id' => $recent3->id]); ?>" class="btn btn-primary">читать</a>
+                        <a href="#" data-id="<?=$recent3->id?>" class="btn btn-primary add-to-profile">добавить</a>
                     </div>
                 </div>
             </div>

@@ -1,56 +1,57 @@
 <?php
+
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
-
 ?>
-<div class="site-index">
-    <div>
-        <h2>
-            <?php
-            echo $category->title;
-            ?>
-        </h2>
-    </div>
-    <main class="mt-5 pt-5">
-        <div class="container">
+<div class="container">
 
-            <section class="text-center">
+    <section id="category-pubs" class="text-center">
 
-                <div class="row mb-4 wow fadeIn">
+        <div>
+            <h2>
+                <?php
+                echo $category->title;
+                ?>
+            </h2>
+        </div>
+        <br>
 
-                    <?php foreach ($books as $book): ?>
-                        <div class="col-lg-4 col-md-6 mb-4">
 
-                            <div class="card">
-                                <div class="card-header">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $book->title; ?></h5>
-                                    <p class="card-text"><?= $book->author->name; ?></p>
-                                     <a href="<?= Url::toRoute(['category/index', 'id' => $book->category->id]); ?> <p class="card-text"> <?= $book->category->title; ?></p></a>
-                                    <a href="<?= Url::toRoute(['site/view', 'id' => $book->id]); ?>"  class="btn btn-primary btn-md">read
-                                        <i class="fa fa-play ml-2"></i>
-                                    </a>
-                                </div>
-                            </div>
+        <div class="row">
+
+            <?php foreach ($books as $book): ?>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+                    <div class="card h-100 text-center">
+
+                        <div class="card-body">
+                            <a href="<?= Url::toRoute(['site/view', 'id' => $book->id]); ?>"><h5 class="card-title"><?= $book->title; ?></h5></a>
+                            <p class="card-text"><?= $book->author->name; ?></p>
+                            <p>5 мин</p>
                         </div>
-                        <?php endforeach; ?>
-
+                        <div class="card-footer text-muted">
+                            <a href="<?= Url::toRoute(['site/view', 'id' => $book->id]); ?>" class="btn btn-primary btn-sm">читать</a>
+                            <a href="#" data-id="<?= $book->id ?>" class="btn btn-primary btn-sm add-to-profile">добавить</a>
+                        </div>
+                    </div>
                 </div>
 
-                <nav class="d-flex justify-content-center wow fadeIn">
-                    <ul class="pagination pg-blue">
-                        <?php
-                        echo LinkPager::widget([
-                            'pagination' => $pagination,
-                        ]);
-                        ?>
-                    </ul>
-                </nav>
+            <?php endforeach; ?>
 
-            </section>
         </div>
-    </main>
+
+        <!-- Pagination -->
+        <nav class="d-flex justify-content-center wow fadeIn">
+            <ul class="pagination pg-blue">
+                <?php
+                echo LinkPager::widget([
+                    'pagination' => $pagination,
+                ]);
+                ?>
+            </ul>
+        </nav>
+    </section>
 
 </div>

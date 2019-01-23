@@ -4,13 +4,10 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
-use frontend\models\Category;
+use yii\bootstrap\Modal;
 
 AppAsset::register($this);
 ?>
@@ -47,11 +44,11 @@ AppAsset::register($this);
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Categories
                                 </a>
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                                    <a class="dropdown-item" href="portfolio-1-col.html">Sci-fy</a>
-                                    <a class="dropdown-item" href="portfolio-2-col.html">Drama</a>
-                                    <a class="dropdown-item" href="portfolio-3-col.html">Comdedy</a>
-                                    <a class="dropdown-item" href="portfolio-4-col.html">Mystery</a>
+                                    <a class="dropdown-item" href="<?= Url::toRoute(['category/index', 'id' => 1]); ?>">Sci-fy</a>
+                                    <a class="dropdown-item" href="<?= Url::toRoute(['category/index', 'id' => 2]); ?>">Drama</a>
+                                    <a class="dropdown-item" href="<?= Url::toRoute(['category/index', 'id' => 3]); ?>">Comdedy</a>
                                 </div>
                             </li>
                             <?php
@@ -69,6 +66,10 @@ AppAsset::register($this);
                                 ?>
 
                                 <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="return getProfile()">Profile</a>
+                                </li>
+                                
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?= Url::toRoute(['/user/logout']); ?>">Logout</a>
                                 </li>
 
@@ -82,9 +83,6 @@ AppAsset::register($this);
             </nav>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
@@ -100,3 +98,13 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+
+<?php
+Modal::begin([
+    'header' => '<h2>Закладки</h2>',
+    'id' => 'profile',
+    'size' => 'modal-lg',
+    'footer' => '<button type="button" class="btn btn-danger" onclick="clearProfile()">Удалить закладки</button>'
+]);
+Modal::end();
+?>

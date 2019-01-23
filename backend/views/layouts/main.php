@@ -30,13 +30,14 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+//        'brandUrl' => Yii::$app->homeUrl,
+//        'brandLabel' => Yii::$app->name,
+        'brandUrl' => '/book',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Book', 'url' => ['/book']],
         ['label' => 'Author', 'url' => ['/author']],
         ['label' => 'Category', 'url' => ['/category']],
